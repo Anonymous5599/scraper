@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Web Scraper</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f2f4f8; }
+        input, select, button { padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        .result-box { background: #fff; margin-top: 15px; padding: 10px; border-left: 4px solid #28a745; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .checkbox-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Advanced Web Scraper</h2>
+    <form method="post">
+        <label>Website URL:</label>
+        <input type="text" name="url" required placeholder="e.g. https://example.com">
+        
+        <label>Filter by:</label>
+        <select name="attr_type">
+            <option value="">None</option>
+            <option value="class">Class</option>
+            <option value="id">ID</option>
+        </select>
+        
+        <label>Attribute Value:</label>
+        <input type="text" name="attr_value" placeholder="e.g. product-card, content-section">
+
+        <label>What to scrape:</label>
+        <div class="checkbox-grid">
+            <label><input type="checkbox" name="options" value="product_name"> Product Name</label>
+            <label><input type="checkbox" name="options" value="product_price"> Product Price</label>
+            <label><input type="checkbox" name="options" value="email"> Email</label>
+            <label><input type="checkbox" name="options" value="phone"> Phone</label>
+            <label><input type="checkbox" name="options" value="description"> Product Description</label>
+            <label><input type="checkbox" name="options" value="sizes"> Sizes</label>
+            <label><input type="checkbox" name="options" value="variants"> Variants</label>
+        </div>
+
+        <button type="submit">Scrape!</button>
+    </form>
+
+    <hr>
+    <h3>Scraped Results:</h3>
+    {% for r in results %}
+        <div class="result-box">{{ r }}</div>
+    {% endfor %}
+</body>
+</html>
